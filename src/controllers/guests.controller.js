@@ -2,7 +2,7 @@ import { pool } from "../db.js";
 
 export const getGuests = async (req, res) => {
   try {
-    const [rows] = await pool.query("SELECT nameGuest, phoneGuest, emailGuest FROM tbGuest");
+    const [rows] = await pool.query("SELECT idGuest, nameGuest, phoneGuest, emailGuest FROM tbGuest");
     res.json(rows);
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -49,7 +49,7 @@ export const deleteGuests = async (req, res) => {
 
 export const getGuest = async (req, res) => {
   try {
-    const [rows] = await pool.query("SELECT nameGuest, phoneGuest, emailGuest FROM tbGuest WHERE idGuest = ?", [
+    const [rows] = await pool.query("SELECT idGuest, nameGuest, phoneGuest, emailGuest FROM tbGuest WHERE idGuest = ?", [
       req.params.idGuest,
     ]);
     res.json(rows[0]);
